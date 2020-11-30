@@ -3,7 +3,7 @@ import React from 'react'
 export default function Card(props) {
 
 const handleClick = () => {
-    props.addToFav(props.artist.album.title)
+    props.addToFav(props.artist.id)
 }
 
     return (

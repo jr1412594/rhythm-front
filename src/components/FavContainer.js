@@ -1,5 +1,5 @@
 import React from 'react'
-// import Card from './Card'
+import Card from './Card'
 
 export default function FavContainer(props) {
 
@@ -13,8 +13,8 @@ export default function FavContainer(props) {
     //         )
     // }
     return (
-        <div>
+        <section>
             {/* {eachFavSong()} */}
-        </div>
+        </section>
     )
 }

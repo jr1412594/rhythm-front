@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import FavContainer from './FavContainer'
 import AllContainer from './AllContainer'
-const baseURL = "http://localhost:3000/favorites"
+const baseURL = "http://localhost:7000/favorites"
 
 export default class Container extends Component {
 
@@ -25,23 +25,21 @@ export default class Container extends Component {
                 });})
             }
 
-    addToFav = (artist) => {
-        this.setState({favorites: [...this.state.favorites, artist]})
-        
-        // fetch(baseURL, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": 'application/json',
-        //         'Accept': 'application/json',
-        //     body: JSON.stringify({
-        //         artist: "",
-        //         title: "",
-        //         duration: null,
-        //         album: "",
-        //         album_image: ""
-        //     }) 
-        //     }
-        // })
+            addToFav = (artist) => {
+                this.setState({favorites: [...this.state.favorites, artist]})
+                fetch(baseURL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": 'application/json',
+                        'Accept': 'application/json',
+                        body: JSON.stringify({
+                            artist_id: `${this.state.favorites}`
+                            
+                        }
+                        ) 
+                    }  
+                })
+                console.log(this.state.favorites,"favs")
         // .then(response => response.json())
         // .then(results => {
         //     this.setState({favorite:results})
@@ -54,9 +52,9 @@ export default class Container extends Component {
         
         return (
             <div className='Container'>
-                Container
+        
                 
-                <FavContainer favoirtes={this.state.favorites} />
+                <FavContainer favorites={this.state.favorites} />
                 <AllContainer artists={this.state.data} addToFav={this.addToFav}/>
                 {/* <CardContainer artists={this.state.data} /> */}
             </div>
