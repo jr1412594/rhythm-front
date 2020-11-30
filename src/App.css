@@ -1,6 +1,14 @@
 .App {
   text-align: center;
 }
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
+}
+.card {
+  margin: 10px;
 
-
+}
 

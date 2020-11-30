@@ -1,5 +1,7 @@
 import { Component } from 'react'
-import CardContainer from './CardContainer'
+import FavContainer from './FavContainer'
+import AllContainer from './AllContainer'
+const baseURL = "http://localhost:3000/favorites"
 
 export default class Container extends Component {
 
@@ -7,6 +9,8 @@ export default class Container extends Component {
         data: [],
         favorites: []
         }
+
+    
         
         componentDidMount(){
             fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {	
@@ -17,16 +21,44 @@ export default class Container extends Component {
                 .then(response => response.json())
                 .then(data => {
                 this.setState({
-                    data
+                    data: data.data
                 });})
             }
+
+    addToFav = (artist) => {
+        this.setState({favorites: [...this.state.favorites, artist]})
+        
+        // fetch(baseURL, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": 'application/json',
+        //         'Accept': 'application/json',
+        //     body: JSON.stringify({
+        //         artist: "",
+        //         title: "",
+        //         duration: null,
+        //         album: "",
+        //         album_image: ""
+        //     }) 
+        //     }
+        // })
+        // .then(response => response.json())
+        // .then(results => {
+        //     this.setState({favorite:results})
+        // })
+    }
+        
+    
             
     render(){
         
         return (
-            <div>
+            <div className='Container'>
                 Container
-                <CardContainer artists={this.state.data} />
+                
+                <FavContainer favoirtes={this.state.favorites} />
+                <AllContainer artists={this.state.data} addToFav={this.addToFav}/>
+                {/* <CardContainer artists={this.state.data} /> */}
             </div>
         )
     }
